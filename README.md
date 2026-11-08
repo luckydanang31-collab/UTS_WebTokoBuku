@@ -2,8 +2,8 @@
 
 Aplikasi web sederhana untuk pemesanan buku pada toko online. Fokus pada proses **front-end** (HTML, CSS, JavaScript). Data tidak diambil dari server/database, melainkan dari variabel JavaScript pada file terpisah (`js/data.js`) dalam format Array JSON.
 
-- **Nama:**Lucky Danang Aryeswara
-- **NIM:**312510482
+- Nama:Lucky Danang Aryeswara
+- NIM:312510482
 
 ---
 
