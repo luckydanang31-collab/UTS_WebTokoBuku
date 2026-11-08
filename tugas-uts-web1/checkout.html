@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pemesanan buku">
+  <title>Pemesanan - Toko Buku Pustaka</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+  <header class="topbar">
+    <a class="brand" href="dashboard.html">📚 Toko Buku <strong>Pustaka</strong></a>
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html">Stok</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
+    </nav>
+    <div class="user-box">
+      <span id="namaUser"></span>
+      <button type="button" class="btn btn-light btn-sm" data-logout>Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Pemesanan Buku</h1>
+    <p class="page-sub">Pilih buku, atur jumlah, lalu lengkapi data pemesan dan pembayaran.</p>
+
+    <section class="card" aria-labelledby="judulPilih">
+      <h2 id="judulPilih">1. Pilih Buku</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pilihBuku">Buku</label>
+          <select id="pilihBuku"></select>
+        </div>
+        <div class="form-group">
+          <label for="jumlahBuku">Jumlah</label>
+          <input type="number" id="jumlahBuku" min="1" value="1">
+        </div>
+        <div class="form-group" style="align-self:end">
+          <button type="button" class="btn" id="btnTambah">+ Tambah ke Pesanan</button>
+        </div>
+      </div>
+      <small class="error" id="err-keranjang"></small>
+
+      <div class="table-wrap">
+        <table>
+          <caption class="hint">Data pesanan (jumlah dapat diubah langsung)</caption>
+          <thead>
+            <tr><th>Judul</th><th class="num">Harga</th><th>Jumlah</th><th class="num">Subtotal</th><th>Aksi</th></tr>
+          </thead>
+          <tbody id="tbodyKeranjang"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <form id="formCheckout" novalidate>
+      <div class="grid-2">
+        <section class="card" aria-labelledby="judulPemesan">
+          <h2 id="judulPemesan">2. Data Pemesan</h2>
+          <div class="form-group">
+            <label for="c-nama">Nama Lengkap</label>
+            <input type="text" id="c-nama" placeholder="Nama pemesan">
+            <small class="error" id="err-c-nama"></small>
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" placeholder="nama@email.com">
+            <small class="error" id="err-c-email"></small>
+          </div>
+          <div class="form-group">
+            <label for="c-telp">No. Telepon</label>
+            <input type="tel" id="c-telp" placeholder="08xxxxxxxxxx">
+            <small class="error" id="err-c-telp"></small>
+          </div>
+          <div class="form-group">
+            <label for="c-alamat">Alamat Pengiriman</label>
+            <textarea id="c-alamat" placeholder="Alamat lengkap"></textarea>
+            <small class="error" id="err-c-alamat"></small>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="judulBayar">
+          <h2 id="judulBayar">3. Pengiriman &amp; Pembayaran</h2>
+          <div class="form-group">
+            <label for="c-ekspedisi">Ekspedisi</label>
+            <select id="c-ekspedisi"></select>
+            <small class="error" id="err-c-ekspedisi"></small>
+          </div>
+          <div class="form-group">
+            <label for="c-paket">Jenis Paket</label>
+            <select id="c-paket">
+              <option value="">-- Pilih paket --</option>
+              <option value="reguler">Reguler (3-5 hari)</option>
+              <option value="express">Express (1-2 hari)</option>
+            </select>
+            <small class="error" id="err-c-paket"></small>
+          </div>
+          <div class="form-group">
+            <label for="c-bayar">Metode Pembayaran</label>
+            <select id="c-bayar">
+              <option value="">-- Pilih metode --</option>
+              <option>Transfer Bank</option>
+              <option>E-Wallet</option>
+              <option>Kartu Kredit</option>
+              <option>COD (Bayar di Tempat)</option>
+            </select>
+            <small class="error" id="err-c-bayar"></small>
+          </div>
+
+          <div class="summary" aria-live="polite">
+            <div><span>Subtotal</span><span id="sumSubtotal">Rp 0</span></div>
+            <div><span>Ongkos Kirim</span><span id="sumOngkir">Rp 0</span></div>
+            <div class="total"><span>Total Bayar</span><span id="sumTotal">Rp 0</span></div>
+          </div>
+        </section>
+      </div>
+      <button type="submit" class="btn btn-block" style="padding:.9rem">Konfirmasi Pesanan</button>
+    </form>
+  </main>
+
+  <!-- Modal sukses -->
+  <div class="modal" id="modalSukses" role="dialog" aria-modal="true" aria-labelledby="judulSukses">
+    <div class="modal-box" style="text-align:center">
+      <div style="font-size:3rem">🎉</div>
+      <h2 id="judulSukses">Pesanan Berhasil!</h2>
+      <p class="hint" style="margin:.5rem 0 1rem">Simpan nomor Delivery Order berikut untuk tracking:</p>
+      <p style="font-size:1.6rem;font-weight:800;color:var(--primary)" id="noDoBaru"></p>
+      <p style="margin-top:1.2rem">
+        <a class="btn" id="linkTracking" href="tracking.html">Lacak Pesanan</a>
+        <button type="button" class="btn btn-light" data-close>Tutup</button>
+      </p>
+    </div>
+  </div>
+
+  <div id="toast-area" aria-live="polite"></div>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

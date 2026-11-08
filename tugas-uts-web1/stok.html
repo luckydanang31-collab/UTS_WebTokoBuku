@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Informasi stok dan katalog buku">
+  <title>Stok &amp; Katalog - Toko Buku Pustaka</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="stok">
+  <header class="topbar">
+    <a class="brand" href="dashboard.html">📚 Toko Buku <strong>Pustaka</strong></a>
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html">Stok</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
+    </nav>
+    <div class="user-box">
+      <span id="namaUser"></span>
+      <button type="button" class="btn btn-light btn-sm" data-logout>Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Informasi Stok / Katalog</h1>
+    <p class="page-sub">Data dimuat dinamis dari variabel <code>dataKatalogBuku</code> pada <code>data.js</code>.</p>
+
+    <section class="card" aria-labelledby="judulTabel">
+      <h2 id="judulTabel">Daftar Stok Buku</h2>
+      <div class="toolbar">
+        <input type="search" id="cari" placeholder="Cari judul / kode / kategori..." aria-label="Cari buku">
+        <span class="hint" id="infoJumlah"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th><th>Sampul</th><th>Kode</th><th>Judul</th><th>Kategori</th>
+              <th class="num">Stok</th><th class="num">Harga</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyStok"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="judulTambah">
+      <h2 id="judulTambah">Tambah Stok Baru</h2>
+      <form id="formStok" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="s-kode">Kode Buku</label>
+            <input type="text" id="s-kode" placeholder="mis. BK009">
+            <small class="error" id="err-s-kode"></small>
+          </div>
+          <div class="form-group">
+            <label for="s-judul">Judul</label>
+            <input type="text" id="s-judul" placeholder="Judul buku">
+            <small class="error" id="err-s-judul"></small>
+          </div>
+          <div class="form-group">
+            <label for="s-kategori">Kategori</label>
+            <select id="s-kategori">
+              <option value="">-- Pilih --</option>
+              <option>Teknologi</option><option>Desain</option><option>Bisnis</option>
+              <option>Sains</option><option>Bahasa</option><option>Lainnya</option>
+            </select>
+            <small class="error" id="err-s-kategori"></small>
+          </div>
+          <div class="form-group">
+            <label for="s-stok">Jumlah Stok</label>
+            <input type="number" id="s-stok" min="0" placeholder="0">
+            <small class="error" id="err-s-stok"></small>
+          </div>
+          <div class="form-group">
+            <label for="s-harga">Harga (Rp)</label>
+            <input type="number" id="s-harga" min="0" placeholder="0">
+            <small class="error" id="err-s-harga"></small>
+          </div>
+        </div>
+        <button type="submit" class="btn">+ Tambah Baris Stok</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast-area" aria-live="polite"></div>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

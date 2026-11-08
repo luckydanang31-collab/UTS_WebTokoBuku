@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login Toko Buku Pustaka - aplikasi pemesanan buku online">
+  <title>Login - Toko Buku Pustaka</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth" data-page="login">
+  <main class="auth-wrap">
+    <section class="auth-hero" aria-label="Tentang aplikasi">
+      <p class="brand" style="color:#fff">📚 Toko Buku <strong style="color:#fbbf24">Pustaka</strong></p>
+      <h1>Pesan buku jadi lebih mudah.</h1>
+      <p>Kelola stok, buat pemesanan, dan lacak pengiriman dalam satu aplikasi.</p>
+      <ul>
+        <li>Katalog &amp; stok real-time</li>
+        <li>Checkout dengan hitung ongkir otomatis</li>
+        <li>Tracking pengiriman visual</li>
+      </ul>
+    </section>
+
+    <section class="auth-card" aria-labelledby="judulLogin">
+      <h2 id="judulLogin">Selamat Datang</h2>
+      <p class="hint" style="margin-bottom:1.3rem">Silakan masuk untuk melanjutkan.</p>
+
+      <form id="formLogin" novalidate>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="nama@email.com" autocomplete="username">
+          <small class="error" id="err-email"></small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password">
+          <small class="error" id="err-password"></small>
+        </div>
+        <button type="submit" class="btn btn-block">Login</button>
+      </form>
+
+      <div class="auth-actions">
+        <button type="button" class="link-btn" id="btnLupa">Lupa Password</button>
+        <button type="button" class="link-btn" id="btnDaftar">Daftar</button>
+      </div>
+
+      <aside class="demo-box">
+        <strong>Akun demo:</strong><br>
+        mahasiswa@ut.ac.id / mahasiswa123
+      </aside>
+    </section>
+  </main>
+
+  <!-- Modal Lupa Password -->
+  <div class="modal" id="modalLupa" role="dialog" aria-modal="true" aria-labelledby="judulLupa">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="judulLupa">Lupa Password</h2>
+        <button type="button" class="modal-close" data-close aria-label="Tutup">&times;</button>
+      </div>
+      <p class="hint" style="margin-bottom:1rem">Masukkan email terdaftar. Kami akan mensimulasikan pengiriman tautan reset.</p>
+      <form id="formLupa" novalidate>
+        <div class="form-group">
+          <label for="l-email">Email</label>
+          <input type="email" id="l-email" placeholder="nama@email.com">
+          <small class="error" id="err-l-email"></small>
+        </div>
+        <button type="submit" class="btn btn-block">Kirim Tautan Reset</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Daftar -->
+  <div class="modal" id="modalDaftar" role="dialog" aria-modal="true" aria-labelledby="judulDaftar">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="judulDaftar">Daftar Akun Baru</h2>
+        <button type="button" class="modal-close" data-close aria-label="Tutup">&times;</button>
+      </div>
+      <form id="formDaftar" novalidate>
+        <div class="form-group">
+          <label for="d-nama">Nama Lengkap</label>
+          <input type="text" id="d-nama" placeholder="Nama lengkap">
+          <small class="error" id="err-d-nama"></small>
+        </div>
+        <div class="form-group">
+          <label for="d-email">Email</label>
+          <input type="email" id="d-email" placeholder="nama@email.com">
+          <small class="error" id="err-d-email"></small>
+        </div>
+        <div class="form-group">
+          <label for="d-pass">Password</label>
+          <input type="password" id="d-pass" placeholder="Minimal 6 karakter">
+          <small class="error" id="err-d-pass"></small>
+        </div>
+        <div class="form-group">
+          <label for="d-pass2">Konfirmasi Password</label>
+          <input type="password" id="d-pass2" placeholder="Ulangi password">
+          <small class="error" id="err-d-pass2"></small>
+        </div>
+        <button type="submit" class="btn btn-block">Daftar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-area" aria-live="polite"></div>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

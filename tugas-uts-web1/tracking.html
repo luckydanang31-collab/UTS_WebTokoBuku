@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tracking pengiriman pesanan buku">
+  <title>Tracking Pengiriman - Toko Buku Pustaka</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="tracking">
+  <header class="topbar">
+    <a class="brand" href="dashboard.html">📚 Toko Buku <strong>Pustaka</strong></a>
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html">Stok</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
+    </nav>
+    <div class="user-box">
+      <span id="namaUser"></span>
+      <button type="button" class="btn btn-light btn-sm" data-logout>Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Informasi Pengiriman</h1>
+    <p class="page-sub">Masukkan Nomor Delivery Order untuk melihat status pesanan.</p>
+
+    <section class="card" aria-labelledby="judulCari">
+      <h2 id="judulCari">Cari Pesanan</h2>
+      <form id="formCari" class="search-row" novalidate>
+        <input type="text" id="nomorDO" placeholder="Contoh: DO2026001" aria-label="Nomor Delivery Order">
+        <button type="submit" class="btn">Cari</button>
+      </form>
+      <small class="error" id="err-nomorDO"></small>
+      <div class="chips" id="chipDO"><span class="hint">Coba:</span></div>
+    </section>
+
+    <section id="hasil" hidden aria-live="polite">
+      <article class="card">
+        <h2>Status Pengiriman</h2>
+        <p>Pemesan: <strong id="hNama"></strong> &middot; <span class="badge ok" id="hStatus"></span></p>
+        <ol class="stepper" id="stepper"></ol>
+        <dl class="detail-list">
+          <div><dt>Nomor DO</dt><dd id="hDO"></dd></div>
+          <div><dt>Ekspedisi</dt><dd id="hEkspedisi"></dd></div>
+          <div><dt>Tanggal Kirim</dt><dd id="hTanggal"></dd></div>
+          <div><dt>Jenis Paket</dt><dd id="hPaket"></dd></div>
+          <div><dt>Isi Pesanan</dt><dd id="hItems"></dd></div>
+          <div><dt>Total Pembayaran</dt><dd id="hTotal"></dd></div>
+        </dl>
+      </article>
+      <article class="card">
+        <h2>Riwayat Perjalanan Paket</h2>
+        <ul class="timeline" id="timeline"></ul>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast-area" aria-live="polite"></div>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
